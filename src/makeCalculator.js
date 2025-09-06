@@ -6,17 +6,25 @@
 function makeCalculator() {
   return {
     result: 0,
-    add(current, num) {
-      return current + num;
+    add(num) {
+      this.result += num;
+
+      return this;
     },
-    subtract(current, num) {
-      return current - num;
+    subtract(num) {
+      this.result -= num;
+
+      return this;
     },
-    multiply(current, num) {
-      return current * num;
+    multiply(num) {
+      this.result *= num;
+
+      return this;
     },
-    divide(current, num) {
-      return current / num;
+    divide(num) {
+      this.result /= num;
+
+      return this;
     },
     reset() {
       this.result = 0;
@@ -24,7 +32,7 @@ function makeCalculator() {
       return this;
     },
     operate(callback, number) {
-      this.result = callback(this.result, number);
+      callback.call(this, number);
 
       return this;
     },
